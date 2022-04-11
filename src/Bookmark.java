@@ -9,6 +9,7 @@ public class Bookmark {
 	private String memo;
 	
 	Bookmark(String name, String time, String url, String group, String memo){
+		// constructor with all parameters, some can be ""
 		this.name = name;
 		this.time = time;
 		this.url = url;
@@ -16,8 +17,8 @@ public class Bookmark {
 		this.memo = memo;
 	}
 	
-	
 	Bookmark(String url){
+		// constructor with url, time = now
 		this.name = "";
 		LocalDateTime dateAndTime =LocalDateTime.now();
 		this.time = dateAndTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm"));
@@ -27,6 +28,6 @@ public class Bookmark {
 	}
 	
 	public void print() {
-		System.out.println(name + time + url + group + memo);
+		System.out.println(name + " ; " + time + " ; " + url + " ; " + group + " ; " + memo);
 	}
 }
