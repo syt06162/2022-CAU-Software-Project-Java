@@ -1,8 +1,10 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Bookmark {
 	private String name;
-	private String time;
-	private String url;
+	private String time; // essential
+	private String url;  // essential
 	private String group;
 	private String memo;
 	
@@ -16,10 +18,15 @@ public class Bookmark {
 	
 	
 	Bookmark(String url){
-		
+		this.name = "";
+		LocalDateTime dateAndTime =LocalDateTime.now();
+		this.time = dateAndTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm"));
+		this.url = url;
+		this.group = "";
+		this.memo = "";
 	}
 	
 	public void print() {
-		
+		System.out.println(name + time + url + group + memo);
 	}
 }
