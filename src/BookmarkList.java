@@ -24,10 +24,6 @@ public class BookmarkList {
 		String line = "";
 		String[] parsed;
 		
-		int lineCount = 1; // 첫번째 줄부터 읽음
-		int addCount = 0; // 정상 add 개수
-		int errCount = 0; // 에러 라인 개수
-		
 		try {
 			File file = new File(bookmarkFileName);
 			input = new Scanner(file);
@@ -44,23 +40,11 @@ public class BookmarkList {
 					
 					if (parsed.length!=5) {
 						// 에러 라인: 파싱된 항목이 5개가 아님. 
-						errCount++;
-						System.out.println(lineCount + "번째 줄 에러: 파싱된 항목이 5개가 아닙니다.");
+						System.out.println("MalformedDateException: No 5 parsed ; invalid Bookmark info line: " + line);
 					}
-					else if (parsed[1]=="" && parsed[2]=="") {
-						// 에러 라인: 필수요소(time, url) 둘다 없음
-						errCount++;						
-						System.out.println(lineCount + "번째 줄 에러: 필수요소(time, url) 둘다 없습니다.");
-					}
-					else if (parsed[1]=="") {
-						// 에러 라인: 필수요소(time) 없음
-						errCount++;						
-						System.out.println(lineCount + "번째 줄 에러: 필수요소(time)이 없습니다.");
-					}
-					else if (parsed[2]=="") {
+					else if (parsed[2].equals("")) {
 						// 에러 라인: 필수요소(url) 없음
-						errCount++;						
-						System.out.println(lineCount + "번째 줄 에러: 필수요소(url)이 없습니다.");
+						System.out.println("MalformedURLException: wrong URL - No URL ; invalid Bookmark info line: " + line);
 					}
 					else {
 						try {
@@ -69,27 +53,20 @@ public class BookmarkList {
 							
 							// 정상 라인: bookmark 생성 및 추가
 							bookmarkArray[bookmarkCount++] = new Bookmark(parsed[0], dateAndTime, parsed[2], parsed[3], parsed[4]);
-							addCount++;
-							
 						} catch(DateTimeParseException e) {
-							// 에러 라인: 시간 형식이 잘못됨.
-							errCount++;					
-							System.out.println(lineCount + "번째 줄 에러: 시간 형식이 잘못되었습니다.");
+							// 에러 라인: Date 형식이 잘못됨.
+							System.out.println("Date Format Error -> No Created Time invalid Bookmark info line: " + line);
 							}
 					}
 				}
 				
-				lineCount++;
 			}
-			
-			
-			System.out.println("add: " + addCount + "개, error: " + errCount +"개" );
 			
 			
 		}
 		catch(FileNotFoundException e) {
 			// e.printStackTrace();
-			System.out.println("에러: 지정된 파일을 찾을 수 없습니다.");
+			System.out.println("Unknwon BookmarkList data File");
 		}
 	}
 	

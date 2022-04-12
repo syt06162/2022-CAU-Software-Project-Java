@@ -28,6 +28,6 @@ public class Bookmark {
 	
 	public String getStringFormat() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
-		return (name + " ; " + time.format(formatter) + " ; " + url + " ; " + group + " ; " + memo);
+		return (name + "," + time.format(formatter) + "," + url + "," + group + "," + memo);
 	}
 }
