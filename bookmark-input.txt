@@ -1,0 +1,9 @@
+// Bookmark information - text
+Naver,2021-01-02_15:49,http://naver.com/,portal,Home
+CAU,2021-01-02_15:49,http://www.cau.ac.kr,,
+KB,2021-12-02_15:49,http://kbbank.co.kr/,bank,
+Daum,2021-01-02_15:49,http://www.daum.net/,portal,
+Wooribank,2021-12-28_12:33,http://woori.com,bank,
+EIRIC,2021-01-02_15:49,http://eiric.or.kr,,
+Youtube,2021-12-20_15:49,http://youtub.com,,
+// end of Bookmark information - text
