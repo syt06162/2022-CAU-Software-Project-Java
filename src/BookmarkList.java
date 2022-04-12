@@ -10,12 +10,12 @@ import java.util.Scanner;
 
 public class BookmarkList {
 	private Bookmark[] bookmarkArray;
-	private int bookmarkCount;
+	private int bookmarkCount; // bookmark 개수
 	private final int MAX_SIZE = 100;
 	
 	BookmarkList(String bookmarkFileName){
 		bookmarkArray = new Bookmark[MAX_SIZE];
-		loadBookmarks(bookmarkFileName);
+		loadBookmarks(bookmarkFileName); 
 	}
 	
 	void loadBookmarks(String bookmarkFileName) {
@@ -39,25 +39,27 @@ public class BookmarkList {
 					for (int i = 0; i<parsed.length; i++)
 						parsed[i] = parsed[i].trim();
 					
+					// 파싱이 완료되었으니, 오류인지 판단하여 추가할지 말지 결정.
+					// 1.parse항목이 5개인지 ; 2.url이 있는지 ; 3.date형식이 올바른지
 					if (parsed.length!=5) {
-						// 에러 라인: 파싱된 항목이 5개가 아님. 
+						// 에러 유형 1: 파싱된 항목이 5개가 아님. 
 						System.out.println("MalformedDateException: No 5 parsed ; invalid Bookmark info line: " + line);
 					}
 					else if (parsed[2].equals("")) {
-						// 에러 라인: 필수요소(url) 없음
+						// 에러 유형 2: 필수요소(url) 없음
 						System.out.println("MalformedURLException: wrong URL - No URL ; invalid Bookmark info line: " + line);
 					}
 					else {
 						try {
 							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
 							LocalDateTime dateAndTime = LocalDateTime.parse(parsed[1], formatter);
-							
 							// 정상 라인: bookmark 생성 및 추가
 							bookmarkArray[bookmarkCount++] = new Bookmark(parsed[0], dateAndTime, parsed[2], parsed[3], parsed[4]);
+							
 						} catch(DateTimeParseException e) {
-							// 에러 라인: Date 형식이 잘못됨.
+							// 에러 유형 3: Date 형식이 잘못됨.
 							System.out.println("Date Format Error -> No Created Time invalid Bookmark info line: " + line);
-							}
+						}
 					}
 				}
 				
@@ -80,9 +82,11 @@ public class BookmarkList {
 		    FileWriter fileWriter = new FileWriter(file);
 			PrintWriter printWriter = new PrintWriter(fileWriter);
 			
+			printWriter.write("// Bookmark information - text" + "\r\n");
 			for (int i = 0; i<bookmarkCount; i++) {
 				printWriter.write(getBookmark(i).getStringFormat() + "\r\n");
 			}
+			printWriter.write("// end of Bookmark information - text" + "\r\n");
 			printWriter.close();
 		}
 		catch(IOException e) {
@@ -92,27 +96,39 @@ public class BookmarkList {
 	}
 	
 	public int numBookmarks() {
+		// bookmark 개수 리턴
 		return bookmarkCount;
 	}
 	
 	public Bookmark getBookmark(int i) {
+		// 입력값 i 번째 bookmark 리턴
 		return bookmarkArray[i];
 	}
 	
 	public void mergeByGroup() {
+		// 원리 : 0부터 마지막까지 올라가면서, group이름이 있는것을 찾는다.
+		// group이름을 찾았다면, 그뒤에 나오는 bookmark 중 그 group이름과 같은 group이름을 가진 bookmark들을, 
+		// 새로운 array에 순서를 유지하며 추가한다.
+		// 추가한 것은 참조를 해제해서, 다음번 탐색때 또 하지 않게 한다.
+		
+		// 이렇게 쭉 올라가면서 group이름이 있는것들은 다 새로운 배열에 추가한다.
+		// 마지막으로 다시 0번부터 탐색해 group이름이 없는것들을 새로운 배열 뒷부분에 추가해준다.
+		
 		Bookmark[] newArray = new Bookmark[MAX_SIZE];
-		int oldPointer = 0;
-		int newPointer = 0;
-		String groupName = null;
+		int oldPointer = 0; // 기존 배열의, 현재 탐색중인 인덱스를 가리키는 값
+		int newPointer = 0; // 새로운 배열의, 추가되어야 하는 곳의 인덱스를 가리키는 값
+		String groupName = null; // 그룹 이름을 찾으면 여기에 저장되고, 그뒤로 이 이름과 같은 이름을 가진 bookmark를 새로운 배열에 추가한다.
 		
 		while (oldPointer < bookmarkCount) {
-			int tempPointer;
+			int tempPointer; // group을 찾은시점부터 그뒤로 탐색할때 사용할 포인터 
 
 			if (bookmarkArray[oldPointer] != null && !bookmarkArray[oldPointer].getGroup().equals("")) {
 				groupName = bookmarkArray[oldPointer].getGroup();
-				tempPointer = oldPointer;
+				tempPointer = oldPointer; // oldPointer 값부터 끝까지 탐색한다.
 				while (tempPointer < bookmarkCount) {
 					if (bookmarkArray[tempPointer] != null && bookmarkArray[tempPointer].getGroup().equals(groupName)){
+						// 현재 찾는 groupName 과 같은 group이면, 이것을 새로운 배열에 추가한다.
+						// 그리고 기존 배열의 참조는 null로 만들어, 다음번 탐색에서 또 걸리지 않게 한다.
 						newArray[newPointer] = bookmarkArray[tempPointer];
 						bookmarkArray[tempPointer] = null;
 						newPointer++;
@@ -123,10 +139,11 @@ public class BookmarkList {
 			}
 			oldPointer++;
 		}
+		// 여기까지 되면 그룹이름이 있는 것들은 모두 옮겨졌다.
 		
 		oldPointer = 0;
+		// 이제 그룹이름이 없는 것들을 앞에서부터 하나하나 새로운 배열로 옮겨준다.
 		while (oldPointer < bookmarkCount) {
-			
 			if (bookmarkArray[oldPointer] != null && bookmarkArray[oldPointer].getGroup().equals("")) {
 				newArray[newPointer] = bookmarkArray[oldPointer];
 				bookmarkArray[oldPointer] = null;
@@ -135,6 +152,7 @@ public class BookmarkList {
 			oldPointer++;
 		}
 		
+		// 새로운 배열에 merge가 완료되었으므로, 기존 참조를 새로운 배열로 옮겨준다.
 		bookmarkArray = newArray;
 		
 	}

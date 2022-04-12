@@ -3,13 +3,12 @@ import java.time.format.DateTimeFormatter;
 
 public class Bookmark {
 	private String name;
-	private LocalDateTime time; // essential
-	private String url;  // essential
+	private LocalDateTime time; // 필수요소
+	private String url;  // 필수요소
 	private String group;
 	private String memo;
 	
 	Bookmark(String name, LocalDateTime time, String url, String group, String memo){
-		// constructor with all parameters, some can be ""
 		this.name = name;
 		this.time = time;
 		this.url = url;
@@ -18,7 +17,7 @@ public class Bookmark {
 	}
 	
 	Bookmark(String url){
-		// constructor with url, time = now
+		// 위에서 작성한 생성자를 또 이용
 		this("", LocalDateTime.now(), url, "", "");
 	}
 	
@@ -27,6 +26,7 @@ public class Bookmark {
 	}
 	
 	public String getStringFormat() {
+		// Bookmark의 5가지 필드를, String으로 보기 좋게 리턴하는 메소드
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
 		return (name + "," + time.format(formatter) + "," + url + "," + group + "," + memo);
 	}
