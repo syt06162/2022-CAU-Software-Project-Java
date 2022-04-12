@@ -4,5 +4,8 @@
 CAU  , 2021-01-02_15:49, http://www.cau.ac.kr ;;
 Naver; 2021-01-02_15:49; http://naver.com/ ; portal ; Home
 EIRIC ; 2021-01-02_15:49, http://eiric.or.kr, ;
+; 2021-01-02_15:49; sdfsdfdds.dd.dd; ;
+; ; sdfsdfdds.dd.dd; ;
+; ; ;sda ;
 Daum; 2021-01-02_15:49; http://www.daum.net/ ; portal ; 
 // end of Bookmark information saved by GUI 

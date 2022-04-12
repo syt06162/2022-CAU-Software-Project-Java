@@ -3,12 +3,12 @@ import java.time.format.DateTimeFormatter;
 
 public class Bookmark {
 	private String name;
-	private String time; // essential
+	private LocalDateTime time; // essential
 	private String url;  // essential
 	private String group;
 	private String memo;
 	
-	Bookmark(String name, String time, String url, String group, String memo){
+	Bookmark(String name, LocalDateTime time, String url, String group, String memo){
 		// constructor with all parameters, some can be ""
 		this.name = name;
 		this.time = time;
@@ -19,15 +19,11 @@ public class Bookmark {
 	
 	Bookmark(String url){
 		// constructor with url, time = now
-		this.name = "";
-		LocalDateTime dateAndTime =LocalDateTime.now();
-		this.time = dateAndTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm"));
-		this.url = url;
-		this.group = "";
-		this.memo = "";
+		this("", LocalDateTime.now(), url, "", "");
 	}
 	
 	public void print() {
-		System.out.println(name + " ; " + time + " ; " + url + " ; " + group + " ; " + memo);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
+		System.out.println(name + " ; " + time.format(formatter) + " ; " + url + " ; " + group + " ; " + memo);
 	}
 }
