@@ -9,6 +9,5 @@ public class Test {
 			bl.getBookmark(i).print();
 
 		bl.saveBookmarks("237.txt");
-		
 	}
 }
