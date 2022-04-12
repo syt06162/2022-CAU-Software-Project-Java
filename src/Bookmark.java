@@ -30,4 +30,8 @@ public class Bookmark {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
 		return (name + "," + time.format(formatter) + "," + url + "," + group + "," + memo);
 	}
+	
+	public String getGroup() {
+		return group;
+	} 
 }

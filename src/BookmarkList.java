@@ -11,13 +11,14 @@ import java.util.Scanner;
 public class BookmarkList {
 	private Bookmark[] bookmarkArray;
 	private int bookmarkCount;
+	private final int MAX_SIZE = 100;
 	
 	BookmarkList(String bookmarkFileName){
-		bookmarkArray = new Bookmark[100];
-		addBookmarks(bookmarkFileName);
+		bookmarkArray = new Bookmark[MAX_SIZE];
+		loadBookmarks(bookmarkFileName);
 	}
 	
-	void addBookmarks(String bookmarkFileName) {
+	void loadBookmarks(String bookmarkFileName) {
 		// bookmarkFileName 을 입력받아, 줄 별로 북마크 정보를 파싱해 북마크를 추가하는 메소드
 		
 		Scanner input = null;
@@ -70,7 +71,6 @@ public class BookmarkList {
 		}
 	}
 	
-	
 	void saveBookmarks(String bookmarkFileName) {
 		// BookmarkList에 저장되어 있는 모든 Bookmark들을, 형식에 맞게 파일에 저장
 		// 입력받은 파일 이름에 새로 쓰기
@@ -100,6 +100,42 @@ public class BookmarkList {
 	}
 	
 	public void mergeByGroup() {
-		// to-do
+		Bookmark[] newArray = new Bookmark[MAX_SIZE];
+		int oldPointer = 0;
+		int newPointer = 0;
+		String groupName = null;
+		
+		while (oldPointer < bookmarkCount) {
+			int tempPointer;
+
+			if (bookmarkArray[oldPointer] != null && !bookmarkArray[oldPointer].getGroup().equals("")) {
+				groupName = bookmarkArray[oldPointer].getGroup();
+				tempPointer = oldPointer;
+				while (tempPointer < bookmarkCount) {
+					if (bookmarkArray[tempPointer] != null && bookmarkArray[tempPointer].getGroup().equals(groupName)){
+						newArray[newPointer] = bookmarkArray[tempPointer];
+						bookmarkArray[tempPointer] = null;
+						newPointer++;
+					}
+					tempPointer++;
+				}
+				
+			}
+			oldPointer++;
+		}
+		
+		oldPointer = 0;
+		while (oldPointer < bookmarkCount) {
+			
+			if (bookmarkArray[oldPointer] != null && bookmarkArray[oldPointer].getGroup().equals("")) {
+				newArray[newPointer] = bookmarkArray[oldPointer];
+				bookmarkArray[oldPointer] = null;
+				newPointer++;
+			}
+			oldPointer++;
+		}
+		
+		bookmarkArray = newArray;
+		
 	}
 }

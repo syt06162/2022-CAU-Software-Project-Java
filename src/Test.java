@@ -7,7 +7,13 @@ public class Test {
 		int num = bl.numBookmarks();
 		for (int i = 0; i<num; i++)
 			bl.getBookmark(i).print();
+		
+		System.out.println("\n");
 
-		bl.saveBookmarks("237.txt");
+//		bl.saveBookmarks("237.txt");
+		
+		bl.mergeByGroup();
+		for (int i = 0; i<num; i++)
+			bl.getBookmark(i).print();
 	}
 }
