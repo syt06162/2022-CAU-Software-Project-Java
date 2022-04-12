@@ -23,7 +23,11 @@ public class Bookmark {
 	}
 	
 	public void print() {
+		System.out.println(getStringFormat());
+	}
+	
+	public String getStringFormat() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
-		System.out.println(name + " ; " + time.format(formatter) + " ; " + url + " ; " + group + " ; " + memo);
+		return (name + " ; " + time.format(formatter) + " ; " + url + " ; " + group + " ; " + memo);
 	}
 }

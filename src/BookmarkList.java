@@ -1,5 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -15,6 +18,8 @@ public class BookmarkList {
 	}
 	
 	void addBookmarks(String bookmarkFileName) {
+		// bookmarkFileName 을 입력받아, 줄 별로 북마크 정보를 파싱해 북마크를 추가하는 메소드
+		
 		Scanner input = null;
 		String line = "";
 		String[] parsed;
@@ -86,6 +91,27 @@ public class BookmarkList {
 			// e.printStackTrace();
 			System.out.println("에러: 지정된 파일을 찾을 수 없습니다.");
 		}
+	}
+	
+	
+	void saveBookmarks(String bookmarkFileName) {
+		// BookmarkList에 저장되어 있는 모든 Bookmark들을, 형식에 맞게 파일에 저장
+		// 입력받은 파일 이름에 새로 쓰기
+		File file = new File(bookmarkFileName);
+		
+		try {
+		    FileWriter fileWriter = new FileWriter(file);
+			PrintWriter printWriter = new PrintWriter(fileWriter);
+			
+			for (int i = 0; i<bookmarkCount; i++) {
+				printWriter.write(getBookmark(i).getStringFormat() + "\r\n");
+			}
+			printWriter.close();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	public int numBookmarks() {

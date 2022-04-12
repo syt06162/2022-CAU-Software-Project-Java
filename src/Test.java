@@ -8,6 +8,6 @@ public class Test {
 		for (int i = 0; i<num; i++)
 			bl.getBookmark(i).print();
 
-		
+		bl.saveBookmarks("237.txt");
 	}
 }
