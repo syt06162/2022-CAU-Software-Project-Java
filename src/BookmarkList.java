@@ -108,7 +108,7 @@ public class BookmarkList {
 		// 추가한 것은 참조를 해제해서, 다음번 탐색때 또 하지 않게 한다.
 		
 		// 이렇게 쭉 올라가면서 group이름이 있는것들은 다 새로운 배열에 추가한다.
-		// 마지막으로 다시 0번부터 탐색해 group이름이 없는것들을 새로운 배열 뒷부분에 추가해준다.
+		// 이때, 그룹이름이 없는 것들은 그냥 순서를 유지하도록 새로운 배열에 추가하면 된다.
 		
 		Bookmark[] newArray = new Bookmark[MAX_SIZE];
 		int oldPointer = 0; // 기존 배열의, 현재 탐색중인 인덱스를 가리키는 값
@@ -117,8 +117,19 @@ public class BookmarkList {
 		
 		while (oldPointer < bookmarkCount) {
 			int tempPointer; // group을 찾은시점부터 그뒤로 탐색할때 사용할 포인터 
-
-			if (bookmarkArray[oldPointer] != null && !bookmarkArray[oldPointer].getGroup().equals("")) {
+			
+			if (bookmarkArray[oldPointer] == null) {
+				// null인경우는 이미 앞에서 그룹으로 묶였던 것이므로 pass
+			}
+			else if (bookmarkArray[oldPointer].getGroup().equals("")) {
+				// 그룹이름이 없는경우는 순서를 유지 위해 newArray에 그냥 추가한다.
+				newArray[newPointer] = bookmarkArray[oldPointer];
+				bookmarkArray[oldPointer] = null;
+				newPointer++;
+			}
+			else {
+				// null도 아니고, 그룹이름이 없지도 않다는 것은 새로운 그룹을 발견했다는 것이다.
+				// 그후에 나오는 같은 그룹이름 Bookmark들을 모두 새로운 배열에 추가한다.
 				groupName = bookmarkArray[oldPointer].getGroup();
 				tempPointer = oldPointer; // oldPointer 값부터 끝까지 탐색한다.
 				while (tempPointer < bookmarkCount) {
@@ -131,22 +142,10 @@ public class BookmarkList {
 					}
 					tempPointer++;
 				}
-				
 			}
 			oldPointer++;
 		}
-		// 여기까지 되면 그룹이름이 있는 것들은 모두 옮겨졌다.
 		
-		oldPointer = 0;
-		// 이제 그룹이름이 없는 것들을 앞에서부터 하나하나 새로운 배열로 옮겨준다.
-		while (oldPointer < bookmarkCount) {
-			if (bookmarkArray[oldPointer] != null && bookmarkArray[oldPointer].getGroup().equals("")) {
-				newArray[newPointer] = bookmarkArray[oldPointer];
-				bookmarkArray[oldPointer] = null;
-				newPointer++;
-			}
-			oldPointer++;
-		}
 		
 		// 새로운 배열에 merge가 완료되었으므로, 기존 참조를 새로운 배열로 옮겨준다.
 		bookmarkArray = newArray;
