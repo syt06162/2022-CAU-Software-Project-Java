@@ -40,13 +40,9 @@ public class BookmarkList {
 						parsed[i] = parsed[i].trim();
 					
 					// 파싱이 완료되었으니, 오류인지 판단하여 추가할지 말지 결정.
-					// 1.parse항목이 5개인지 ; 2.url이 있는지 ; 3.date형식이 올바른지
-					if (parsed.length!=5) {
-						// 에러 유형 1: 파싱된 항목이 5개가 아님. 
-						System.out.println("MalformedDateException: No 5 parsed ; invalid Bookmark info line: " + line);
-					}
-					else if (parsed[2].equals("")) {
-						// 에러 유형 2: 필수요소(url) 없음
+					// 1.url이 있는지 ; 2.date형식이 올바른지
+					if (parsed[2].equals("")) {
+						// 에러 유형 1: 필수요소(url) 없음
 						System.out.println("MalformedURLException: wrong URL - No URL ; invalid Bookmark info line: " + line);
 					}
 					else {
@@ -57,7 +53,7 @@ public class BookmarkList {
 							bookmarkArray[bookmarkCount++] = new Bookmark(parsed[0], dateAndTime, parsed[2], parsed[3], parsed[4]);
 							
 						} catch(DateTimeParseException e) {
-							// 에러 유형 3: Date 형식이 잘못됨.
+							// 에러 유형 2: Date 형식이 잘못됨.
 							System.out.println("Date Format Error -> No Created Time invalid Bookmark info line: " + line);
 						}
 					}
