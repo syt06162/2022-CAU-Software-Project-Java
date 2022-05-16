@@ -145,10 +145,7 @@ public class BookmarkList {
 			}
 			oldPointer++;
 		}
-		
-		
 		// 새로운 배열에 merge가 완료되었으므로, 기존 참조를 새로운 배열로 옮겨준다.
 		bookmarkArray = newArray;
-		
 	}
 }
