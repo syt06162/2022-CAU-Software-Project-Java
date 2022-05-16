@@ -31,8 +31,20 @@ public class Bookmark {
 		return (name + "," + time.format(formatter) + "," + url + "," + group + "," + memo);
 	}
 	
+	public String getName() {
+		return name;
+	} 
+	public String getTime() {
+		return time.toString();
+	} 
+	public String getUrl() {
+		return url;
+	} 
 	public String getGroup() {
 		return group;
+	} 
+	public String getMemo() {
+		return memo;
 	} 
 }
 

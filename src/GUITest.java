@@ -3,10 +3,8 @@ public class GUITest {
 
 	public static void main(String[] args) {
 		
-		BookmarkManager bm = new BookmarkManager();
 		
-//		// 1. BookmarkList 객체 생성, 데이터 넣기
-//		BookmarkList bl = new BookmarkList("bookmark-input.txt");
+		BookmarkManager bm = new BookmarkManager("bookmark-input.txt");
 //		
 //		// 2. BookmarkList 안에 Bookmark들 출력
 //		for (int i = 0; i<bl.numBookmarks(); i++)

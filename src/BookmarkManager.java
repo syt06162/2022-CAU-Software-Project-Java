@@ -4,24 +4,30 @@ import javax.swing.JFrame;
 
 public class BookmarkManager extends JFrame{
 
-	BookmarkManager(){
-		setLayout(new BorderLayout());
+	BookmarkList bl;
+	
+	BookmarkManager(String fileName){
+		// 1. bookmarkList 객체 생성
+		bl = new BookmarkList(fileName);
+		bl.mergeByGroup();
 		
+		// frame에 대한 layout
+		setLayout(new BorderLayout());
 		setTitle("Bookmark Manager");
-		setSize(900, 350); // pack?
+		setSize(900, 350);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
 		// left - listPanel
-		BookmarkListPanel listPanel = new BookmarkListPanel();
+		BookmarkListPanel listPanel = new BookmarkListPanel(bl);
 		add(listPanel, BorderLayout.CENTER);
-		
+	
 		
 		// right - btnPanel
 		ButtonPanel btnPanel = new ButtonPanel();
 		add(btnPanel, BorderLayout.EAST);
-		setVisible(true);
 		
+		setVisible(true);
 	}
 	
 }

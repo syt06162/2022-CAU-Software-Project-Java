@@ -22,6 +22,5 @@ public class ButtonPanel extends JPanel{
 		
 		setVisible(true);
 		
-		
 	}
 }
