@@ -14,7 +14,7 @@ public class BookmarkManager extends JFrame{
 		// frameø° ¥Î«— layout
 		setLayout(new BorderLayout());
 		setTitle("Bookmark Manager");
-		setSize(900, 350);
+		setSize(800, 350);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		

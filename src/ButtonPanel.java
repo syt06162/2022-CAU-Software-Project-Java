@@ -1,4 +1,6 @@
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -9,6 +11,7 @@ public class ButtonPanel extends JPanel{
 	public ButtonPanel() {
 		setLayout(new GridLayout(5,1));
 
+		// button들 생성
 		addBtn = new JButton("ADD");
 		deleteBtn = new JButton("DELETE");
 		upBtn = new JButton("UP");
@@ -18,7 +21,15 @@ public class ButtonPanel extends JPanel{
 		add(deleteBtn);
 		add(upBtn);
 		add(downBtn);
-		add(saveBtn);
+		add(saveBtn);			
+		
+		// add 버튼 actionlistener
+		addBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BookmarkAddFrame ba = new BookmarkAddFrame();				
+			}
+		});
 		
 		setVisible(true);
 		

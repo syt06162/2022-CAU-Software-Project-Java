@@ -27,8 +27,11 @@ public class BookmarkListPanel extends JPanel{
 		}
 		
 		table = new JTable(model);
+		table.getColumnModel().getColumn(0).setMinWidth(10);
+		table.getColumnModel().getColumn(0).setMaxWidth(20);
 		table.getColumnModel().getColumn(0).setPreferredWidth(20);
-				
+		table.getColumnModel().getColumn(3).setPreferredWidth(200);
+		table.getColumnModel().getColumn(4).setPreferredWidth(160);
 		
 		// scroll pane
 		scrollPane = new JScrollPane(table);
@@ -65,6 +68,9 @@ public class BookmarkListPanel extends JPanel{
 				model.addRow(new String[]{">", groupName, "", "", "", ""});
 			}
 		}
+		
+		// table에도 확실히 보이게
+		model.fireTableDataChanged();
 	}
 
 }

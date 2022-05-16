@@ -2,8 +2,7 @@
 public class GUITest {
 
 	public static void main(String[] args) {
-		
-		
+
 		BookmarkManager bm = new BookmarkManager("bookmark-input.txt");
 //		
 //		// 2. BookmarkList 안에 Bookmark들 출력

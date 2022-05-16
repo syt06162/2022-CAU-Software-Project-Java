@@ -101,7 +101,7 @@ public class BookmarkList {
 	}
 	
 	public void mergeByGroup() {
-		// ** Bookmark[] 를 사용하는 것에서 arrayList 사용으로 변경하였음. 
+		// *과제 5* Bookmark[] 를 사용하는 것에서 arrayList 사용으로 변경하였음. 
 		// 따라서 몇개의 포인터가 삭제되고, add, remove 메소드로 대체
 		
 		// 원리 : 0부터 마지막까지 올라가면서, group이름이 있는것을 찾는다.
@@ -118,7 +118,6 @@ public class BookmarkList {
 		while (numBookmarks() != 0) {
 			int tempPointer; // group을 찾은시점부터 그뒤로 탐색할때 사용할 포인터 
 			
-			System.out.println(""+numBookmarks());
 			if (bookmarkArray.get(0).getGroup().equals("")) {
 				// 그룹이름이 없는경우는 순서를 유지 위해 newArray에 그냥 추가한다.
 				newArray.add(bookmarkArray.get(0));
