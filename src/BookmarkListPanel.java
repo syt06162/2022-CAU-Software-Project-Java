@@ -1,6 +1,5 @@
 import java.awt.Dimension;
 import java.awt.GridLayout;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -10,11 +9,14 @@ public class BookmarkListPanel extends JPanel{
 	
 	private String[] headers = {"", "Group", "Name", "URL", "Created Time", "Memo"};
 	
+	private BookmarkList bl; 
 	private DefaultTableModel model; 
 	private JTable table;
 	private JScrollPane scrollPane;
 	
 	BookmarkListPanel(BookmarkList bl){
+		this.bl = bl;
+		
 		setLayout(new GridLayout());
 		
 		// Jtable, model

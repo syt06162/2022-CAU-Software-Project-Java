@@ -4,11 +4,10 @@ import javax.swing.JFrame;
 
 public class BookmarkManager extends JFrame{
 
-	BookmarkList bl;
 	
 	BookmarkManager(String fileName){
 		// 1. bookmarkList 객체 생성
-		bl = new BookmarkList(fileName);
+		BookmarkList bl = new BookmarkList(fileName);
 		bl.mergeByGroup();
 		
 		// frame에 대한 layout
