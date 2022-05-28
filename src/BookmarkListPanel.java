@@ -1,5 +1,7 @@
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -34,7 +36,8 @@ public class BookmarkListPanel extends JPanel{
 		
 		// groupOpenList - 디폴트는 전부 close
 		groupOpenList = new ArrayList<String>();
-		
+		//groupOpenList.add("portal"); 
+
 		// Jtable: model, table
 		model = new DefaultTableModel();
 		model.setColumnCount(headers.length);
@@ -46,6 +49,41 @@ public class BookmarkListPanel extends JPanel{
 		table.getColumnModel().getColumn(0).setPreferredWidth(20);
 		table.getColumnModel().getColumn(3).setPreferredWidth(200);
 		table.getColumnModel().getColumn(4).setPreferredWidth(160);
+		
+		// group open, close 하는 것에 대한 mouseAdapter 부착
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() > 0) { 
+					JTable target = (JTable)e.getSource();
+					if (target != table) return;
+					
+					if (table.getSelectedColumn() == 0) {
+						int sRow = table.getSelectedRow();
+						String openMark = (String) table.getValueAt(sRow, 0);
+						String sGroup = (String) table.getValueAt(sRow, 1);
+						if (openMark.equals(">")) {
+							// ■ 현재 open 상태인 경우: close로 만들고, 다시 showBookmarks 
+							// mergeByGroup() 도 함으로써, up 이나 down으로 인해 일시적으로 이상해졌어도 정상화 
+							groupOpenList.add(sGroup);
+							bl.mergeByGroup();
+							showBookmarks();
+						}
+						else if (openMark.equals("V")) {
+							// ■ 현재 close 상태인 경우: open로 만들고, 다시 showBookmarks 
+							// mergeByGroup() 도 함으로써, up 이나 down으로 인해 일시적으로 이상해졌어도 정상화 
+							groupOpenList.remove(sGroup);
+							bl.mergeByGroup();
+							showBookmarks();
+						}
+						else {
+							// 그 외의 경우는 의미없는 클릭임.
+							return;
+						}
+					}
+				}
+			}
+		});
+			
 		
 		// Jtable: scroll pane
 		scrollPane = new JScrollPane(table);
@@ -123,10 +161,11 @@ public class BookmarkListPanel extends JPanel{
 			}
 		}
 		
+		model.fireTableDataChanged();
 	}
 
 	
-	public boolean isOpenGroup(String groupName) {
+	private boolean isOpenGroup(String groupName) {
 		// 인자로 전달받은 groupNamed이, groupOpenList에 있는지 판단하는 메소드
 		// 있는경우 (open인 경우) true, 아닌경우 false 를 리턴한다.
 		
@@ -136,4 +175,12 @@ public class BookmarkListPanel extends JPanel{
 		}
 		return false;
 	}
+	
+//	private void addOpenGroup(String groupName) {
+//		groupOpenList.add(groupName);
+//	}
+//	
+//	private void removeOpenGroup(String groupName) {
+//		groupOpenList.remove(groupName);
+//	}
 }
