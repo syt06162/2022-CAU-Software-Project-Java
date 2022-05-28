@@ -17,8 +17,20 @@ public class Bookmark {
 	}
 	
 	Bookmark(String url){
-		// 위에서 작성한 생성자를 또 이용
 		this("", LocalDateTime.now(), url, "", "");
+	}
+	
+	// 과제 6 - ADD 시 생성하는 생성자. time 제외 나머지는 사용자 입력, time은 현재 시각
+	Bookmark(String name, String url, String group, String memo){
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
+		LocalDateTime time = LocalDateTime.now()
+				.withNano(0).withSecond(0);
+		
+		this.name = name;
+		this.time = time;
+		this.url = url;
+		this.group = group;
+		this.memo = memo;
 	}
 	
 	public void print() {
@@ -35,7 +47,8 @@ public class Bookmark {
 		return name;
 	} 
 	public String getTime() {
-		return time.toString();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
+		return time.format(formatter);
 	} 
 	public String getUrl() {
 		return url;

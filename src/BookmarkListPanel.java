@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -100,7 +101,7 @@ public class BookmarkListPanel extends JPanel{
 	
 	// bl을 이용해서, 현재 bookmark 들을 JTable에 보여주는 메소드
 	// 기존에 open , close 상태를 유지하기 위해, groupOpenList 안에 있는 그룹명들만 open 상태를 유지해줌
-	private void showBookmarks() {
+	void showBookmarks() {
 		// 기존 table 정보 다 삭제
 		int rowCount = model.getRowCount();
 		while (rowCount != 0) {

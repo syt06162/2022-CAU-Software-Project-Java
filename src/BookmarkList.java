@@ -144,4 +144,12 @@ public class BookmarkList {
 		// 새로운 배열에 merge가 완료되었으므로, 기존 참조를 새로운 배열로 옮겨준다.
 		bookmarkArray = newArray;
 	}
+	
+	// 과제 6 추가 내용 @@@@
+	void addBookmark(Bookmark bm) {
+		bookmarkArray.add(bm);
+	}
+	private void deleteBookmark(Bookmark bm) {
+		bookmarkArray.remove(bm);
+	}
 }
