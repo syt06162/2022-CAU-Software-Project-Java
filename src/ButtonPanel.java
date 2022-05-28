@@ -27,7 +27,7 @@ public class ButtonPanel extends JPanel{
 		addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BookmarkAddFrame ba = new BookmarkAddFrame();				
+				BookmarkInfo bi = new BookmarkInfo();				
 			}
 		});
 		

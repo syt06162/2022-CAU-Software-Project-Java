@@ -9,10 +9,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class BookmarkAddFrame extends JFrame{
+public class BookmarkInfo extends JFrame{
 	JButton inputBtn;
 	
-	BookmarkAddFrame(){
+	BookmarkInfo(){
 		setLayout(new BorderLayout());
 		setTitle("Input New Bookmark");
 		setSize(600, 100);
