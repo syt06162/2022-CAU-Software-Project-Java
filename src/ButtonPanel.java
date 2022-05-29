@@ -57,7 +57,7 @@ public class ButtonPanel extends JPanel{
 					String marker = (String) bmListPanel.getTable().getValueAt(sRow, 0);
 					if ((marker.equals(">")) || (marker.equals("V"))) {
 						// ■■ 만약 선택된 줄이 marker인 경우, 즉 그룹을 열고닫는 marker인 경우
-						//    그룹 말고 단일 북마크를 선택하라는 dialog 표시
+						//    그룹 말고 단일 북마크를 선택하라는 경고 dialog 표시
 						JOptionPane.showMessageDialog(
 								null, "그룹이 아닌 단일 북마크를 선택해주세요.", "DELETE 오류", JOptionPane.WARNING_MESSAGE);
 						return;
@@ -72,12 +72,9 @@ public class ButtonPanel extends JPanel{
 							bl.deleteBookmark(i);
 							bl.mergeByGroup();
 							bmListPanel.showBookmarks();
-							for (int ji = 0; ji<bl.numBookmarks(); ji++)
-								System.out.println(bl.getBookmark(ji).getUrl());
 							return;
 						}
 					}
-					System.out.println("불가능 에러");
 				}
 			}
 		});
