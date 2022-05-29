@@ -22,12 +22,12 @@ public class BookmarkInfo extends JFrame{
 	// 따라서 <1> showBookmarks() 메소드를 갖고 있는 BookmarkListPanel 과,
 	// <2> addBookmark() 메소드를 갖고 있는 BookmarkList 를 화살표로 갖고 있어야 한다.
 	private BookmarkListPanel bmListPanel;
-	private BookmarkList bl2;
+	private BookmarkList bl;
 	
 	BookmarkInfo(BookmarkListPanel bmListPanel, BookmarkList bl){
 		// 인자로 받은 bmListPanel, bl 추가
 		this.bmListPanel = bmListPanel;
-		this.bl2 = bl;
+		this.bl = bl;
 			
 		// 기본 세팅
 		setLayout(new BorderLayout());
@@ -57,8 +57,8 @@ public class BookmarkInfo extends JFrame{
 					return;
 				}
 				// 기존 항목들중에 같은 url이 있어도 오류처리를 했음. 경고 메시지.
-				for (int i = 0; i< bl2.numBookmarks(); i++) {
-					if (bl2.getBookmark(i).getUrl().equals(inputUrl)) {
+				for (int i = 0; i< bl.numBookmarks(); i++) {
+					if (bl.getBookmark(i).getUrl().equals(inputUrl)) {
 						JOptionPane.showMessageDialog(
 								null, "중복된 url 입니다.", "ADD 오류", JOptionPane.WARNING_MESSAGE);
 						return;
@@ -66,9 +66,10 @@ public class BookmarkInfo extends JFrame{
 				}
 				// url도 입력했고 중복도 아닌 경우 = 정상 입력
 				// Bookmark를 추가해준다.
+				// table에도 정보갱신을 한 후 이 Frame을 종료
 				Bookmark bm = new Bookmark( inputName, inputUrl, inputGroup, inputMemo);
-				bl2.addBookmark(bm);
-				bl2.mergeByGroup();
+				bl.addBookmark(bm);
+				bl.mergeByGroup();
 				bmListPanel.showBookmarks();
 				dispose();
 			}

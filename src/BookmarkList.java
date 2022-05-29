@@ -49,7 +49,22 @@ public class BookmarkList {
 							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm");
 							LocalDateTime dateAndTime = LocalDateTime.parse(parsed[1], formatter);
 							// 정상 라인: bookmark 생성 및 추가
-							bookmarkArray.add(new Bookmark(parsed[0], dateAndTime, parsed[2], parsed[3], parsed[4]));
+							Bookmark bm = new Bookmark(parsed[0], dateAndTime, parsed[2], parsed[3], parsed[4]);
+							boolean hasSameUrl = false;
+							for (int i = 0; i< numBookmarks(); i++) {
+								if (bookmarkArray.get(i).getUrl().equals(bm.getUrl())) {
+									hasSameUrl = true;
+									break;
+								}
+							}
+							if (hasSameUrl == true) {
+								// 중복 북마크는 허용하지 않음 - 오류 메시지
+								System.out.println("Has Same Url in line: " + line);
+							}
+							else {
+								bookmarkArray.add(bm);
+							}
+							
 							
 						} catch(DateTimeParseException e) {
 							// 에러 유형 2: Date 형식이 잘못됨.
@@ -149,7 +164,7 @@ public class BookmarkList {
 	void addBookmark(Bookmark bm) {
 		bookmarkArray.add(bm);
 	}
-	private void deleteBookmark(Bookmark bm) {
-		bookmarkArray.remove(bm);
+	void deleteBookmark(int i) {
+		bookmarkArray.remove(i);
 	}
 }
