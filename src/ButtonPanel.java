@@ -79,6 +79,24 @@ public class ButtonPanel extends JPanel{
 			}
 		});
 		
+		// UP 버튼 actionlistener
+		upBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int sRow = bmListPanel.getTable().getSelectedRow(); // 사용자가 선택한 줄
+				if (sRow == -1) {
+				 // ■ 선택된 줄이 없는 경우 - 선택하라는 경고 dialog 표시
+					JOptionPane.showMessageDialog(
+							null, "위로 올릴 북마크를 선택해주세요.", "UP 오류", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				else {
+					
+				}
+			}
+		});
+		
+		
 		setVisible(true);
 		
 	}
