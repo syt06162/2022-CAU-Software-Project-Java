@@ -139,6 +139,7 @@ public class BookmarkListPanel extends JPanel{
 					if (isOpen == true) {
 						// 그룹이 open 상태이고, 첫번째이므로, open 표시인 V와 그룹 이름만 표시
 						model.addRow(new String[]{"V", nowGroupName, "", "", "", ""});
+						model.addRow(new String[]{"", nowGroupName, nowBM.getName(), nowBM.getUrl(), nowBM.getTime(), nowBM.getMemo()});
 						beforeGroupName = nowGroupName;
 						beforeGroupState = 1;
 					}
@@ -175,6 +176,10 @@ public class BookmarkListPanel extends JPanel{
 				return true;
 		}
 		return false;
+	}
+	
+	public JTable getTable() {
+		return table;
 	}
 	
 //	private void addOpenGroup(String groupName) {
