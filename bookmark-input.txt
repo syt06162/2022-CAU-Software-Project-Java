@@ -1,9 +1,8 @@
-// Bookmark information - saved by GUI
-wooribank; 2022-05-05_17:26;http://wooribank.com/;bank; woori woori
-CAU  ; 2021-01-02_15:49; http://www.cau.ac.kr ;;
-Naver; 2021-01-02_15:49; http://naver.com/ ; portal ; Home
-EIRIC ; 2021-01-02_15:49; http://eiric.or.kr; ;
-Daum; 2021-01-02_15:49; http://www.daum.net/ ; portal ; 
-KBbank; 2022-05-05_17:26;http://kbstar.com/;bank;
-
-// end of Bookmark information saved by GUI 
+// Bookmark information - text
+Naver,2021-01-02_15:49,http://naver.com/,portal,Home
+Daum,2021-01-02_15:49,http://www.daum.net/,portal,
+wooribank,2022-05-05_17:26,http://wooribank.com/,bank,woori woori
+KBbank,2022-05-05_17:26,http://kbstar.com/,bank,
+CAU,2021-01-02_15:49,http://www.cau.ac.kr,,
+EIRIC,2021-01-02_15:49,http://eiric.or.kr,,
+// end of Bookmark information - text

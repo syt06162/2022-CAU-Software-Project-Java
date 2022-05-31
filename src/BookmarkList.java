@@ -11,10 +11,12 @@ import java.util.Scanner;
 
 public class BookmarkList {
 	private ArrayList<Bookmark> bookmarkArray;
+	private String fileName;
 	
 	BookmarkList(String bookmarkFileName){
 		bookmarkArray = new ArrayList<Bookmark>();
 		loadBookmarks(bookmarkFileName); 
+		fileName = bookmarkFileName;
 	}
 	
 	void loadBookmarks(String bookmarkFileName) {
@@ -192,6 +194,10 @@ public class BookmarkList {
 				return i;
 		}
 		return -1;
+	}
+	
+	String getFileName() {
+		return fileName;
 	}
 	
 	void UPbookmark(int index) {

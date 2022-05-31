@@ -291,12 +291,13 @@ public class ButtonPanel extends JPanel{
 		});
 		
 		
-		// save 버튼 actionlistener - 일단 show 하는걸로 @@@@
+		// save 버튼 actionlistener 
 		saveBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				bl.mergeByGroup();
-				bmListPanel.showBookmarks();			
+				bmListPanel.showBookmarks();	
+				bl.saveBookmarks(bl.getFileName());
 			}
 		});
 		
