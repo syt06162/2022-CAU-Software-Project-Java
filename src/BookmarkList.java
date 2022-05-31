@@ -164,7 +164,46 @@ public class BookmarkList {
 	void addBookmark(Bookmark bm) {
 		bookmarkArray.add(bm);
 	}
+
 	void deleteBookmark(int i) {
 		bookmarkArray.remove(i);
+	}
+	
+	int getGroupElementCount(String groupName) {
+		int cnt = 0;
+		for (int i = 0; i< numBookmarks(); i++) {
+			if (bookmarkArray.get(i).getGroup().equals(groupName))
+				cnt++;
+		}
+		return cnt;
+	}
+	
+	int getGroupStartIndex(String groupName) {
+		for (int i = 0; i< numBookmarks(); i++) {
+			if (bookmarkArray.get(i).getGroup().equals(groupName))
+				return i;
+		}
+		return -1;
+	}
+	
+	int getStartIndexWithUrl(String url) {
+		for (int i = 0; i< numBookmarks(); i++) {
+			if (bookmarkArray.get(i).getUrl().equals(url))
+				return i;
+		}
+		return -1;
+	}
+	
+	void UPbookmark(int index) {
+		Bookmark tempUp = new Bookmark(bookmarkArray.get(index-1));
+		Bookmark tempNow = new Bookmark(bookmarkArray.get(index));
+		bookmarkArray.set(index, tempUp);
+		bookmarkArray.set(index-1, tempNow);
+	}
+	void DOWNbookmark(int index) {
+		Bookmark tempDown = new Bookmark(bookmarkArray.get(index+1));
+		Bookmark tempNow = new Bookmark(bookmarkArray.get(index));
+		bookmarkArray.set(index, tempDown);
+		bookmarkArray.set(index+1, tempNow);
 	}
 }

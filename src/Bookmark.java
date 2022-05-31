@@ -33,6 +33,16 @@ public class Bookmark {
 		this.memo = memo;
 	}
 	
+	// 과제 6 - UP DOWN 시 bookmark를 지웠다가 다시 생성하는 경우, 정보를 그대로 넣기 
+	Bookmark(Bookmark bm){
+
+		this.name = bm.name;
+		this.time = bm.time;
+		this.url = bm.url;
+		this.group = bm.group;
+		this.memo = bm.memo;
+	}
+	
 	public void print() {
 		System.out.println(getStringFormat());
 	}
