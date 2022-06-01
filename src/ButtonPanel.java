@@ -207,7 +207,7 @@ public class ButtonPanel extends JPanel{
 				}
 				else {
 				//  ■ 마지막줄이면 내릴게 없음.
-					if (sRow == table.getRowCount()) return;
+					if (sRow == table.getRowCount() - 1) return;
 					
 					// sMarker : 선택한 줄 marker,   sGroup : 선택한 줄 그룹,    sUrl : 선택한 줄 url
 					String sMarker = (String)table.getValueAt(sRow, 0);

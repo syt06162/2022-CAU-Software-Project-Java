@@ -1,8 +1,7 @@
 // Bookmark information - text
-Naver,2021-01-02_15:49,http://naver.com/,portal,Home
-Daum,2021-01-02_15:49,http://www.daum.net/,portal,
+ yejoon,2022-06-01_02:41,www.yejoon.com,portal, yejoon sleepy
+test,2022-06-01_02:36,www.test.com,,i am tired
 wooribank,2022-05-05_17:26,http://wooribank.com/,bank,woori woori
 KBbank,2022-05-05_17:26,http://kbstar.com/,bank,
-CAU,2021-01-02_15:49,http://www.cau.ac.kr,,
 EIRIC,2021-01-02_15:49,http://eiric.or.kr,,
 // end of Bookmark information - text

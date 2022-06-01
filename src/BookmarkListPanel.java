@@ -120,7 +120,8 @@ public class BookmarkListPanel extends JPanel{
 			
 			if (nowGroupName.equals("")) {
 				// ■ 그룹 없음, 그냥 추가
-				model.addRow(new String[]{"", "", nowBM.getName(), nowBM.getUrl(), nowBM.getTime(), nowBM.getMemo()});
+				model.addRow(new String[]{"", "", nowBM.getName(), nowBM.getUrl(),
+						nowBM.getTime(), nowBM.getMemo()});
 				
 				// 그룹이름이 없다는 정보 표시
 				beforeGroupName = "";
@@ -139,7 +140,8 @@ public class BookmarkListPanel extends JPanel{
 					if (isOpen == true) {
 						// 그룹이 open 상태이고, 첫번째이므로, open 표시인 V와 그룹 이름만 표시
 						model.addRow(new String[]{"V", nowGroupName, "", "", "", ""});
-						model.addRow(new String[]{"", nowGroupName, nowBM.getName(), nowBM.getUrl(), nowBM.getTime(), nowBM.getMemo()});
+						model.addRow(new String[]{"", nowGroupName, nowBM.getName(), nowBM.getUrl(),
+								nowBM.getTime(), nowBM.getMemo()});
 						beforeGroupName = nowGroupName;
 						beforeGroupState = 1;
 					}
@@ -157,7 +159,8 @@ public class BookmarkListPanel extends JPanel{
 					// 그 그룹이 close 인지 open 인지 봐서,
 					// close 이면 pass, open 이면 bookmark 데이터를 표시한다.
 					if (beforeGroupState == 1) {
-						model.addRow(new String[]{"", nowGroupName, nowBM.getName(), nowBM.getUrl(), nowBM.getTime(), nowBM.getMemo()});
+						model.addRow(new String[]{"", nowGroupName, nowBM.getName(), nowBM.getUrl(),
+								nowBM.getTime(), nowBM.getMemo()});
 					}
 				}
 			}

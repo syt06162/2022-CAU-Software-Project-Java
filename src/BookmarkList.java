@@ -162,7 +162,7 @@ public class BookmarkList {
 		bookmarkArray = newArray;
 	}
 	
-	// 과제 6 추가 내용 @@@@
+	// 과제 6 추가 내용들
 	void addBookmark(Bookmark bm) {
 		bookmarkArray.add(bm);
 	}
