@@ -4,7 +4,7 @@ Bookmark Manager with Java GUI (CAU 2022-1)
 북마크 매니저 설명은 2022-1 중앙대학교 소프트웨어프로젝트 박창윤 교수님의 과제 설명서를 참고하였음.   
 
 ## 시연 영상
-[![Video Label](http://img.youtube.com/vi/v=JKR_q0bkFfY/0.jpg)](https://youtu.be/v=JKR_q0bkFfY?t=0s)
+[![Video Label](http://img.youtube.com/vi/JKR_q0bkFfY/0.jpg)](https://youtu.be/JKR_q0bkFfY?t=0s)
 
 ## 북마크 매니저 기능
 프로그램 시작 시 bookmark-input.txt에 있는 북마크 정보들을 테이블 형태로 읽어 오고, 같은 group의 북마크들은 모아서 저장   
